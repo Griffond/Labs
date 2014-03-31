@@ -1,5 +1,10 @@
 package by.grsu.domain;
 
+/**
+ * Network mask's entity
+ * @author Raman_Volkau
+ */
+
 public class NetworkMask {
 	
 	private Ip ip;
@@ -8,6 +13,10 @@ public class NetworkMask {
 		this.ip = ip;
 	}
 	
+	/**
+	 * Build network mask by the number of necessary hosts
+	 * @param numHosts
+	 */
 	public NetworkMask(Integer numHosts){
 		Long temp= 2L;
 		while(temp<numHosts){
@@ -21,7 +30,17 @@ public class NetworkMask {
 		}
 		
 		this.ip = new Ip(ip);
-		
+	}
+	/**
+	 * @return number of '1' in binary presentation
+	 */
+	public Integer getNum1(){
+		Integer result = 0;
+		String tempstr = this.ip.toBinaryString();
+		for(int i=0; i< tempstr.length(); i++){
+			if(tempstr.charAt(i)=='1') result++;
+		}
+		return result;
 	}
 	
 	public Ip getIp() {
